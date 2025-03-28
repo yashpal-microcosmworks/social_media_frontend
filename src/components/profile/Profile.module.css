@@ -1,0 +1,102 @@
+.profileContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: #d2dcea;
+  min-height: 100vh;
+  margin-top: 50px; /* Adjust this based on header height */
+}
+
+/* Remove position: relative; and top */
+.profileCard {
+  background: #ffffff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  max-width: 400px;
+  width: 100%;
+  margin-top: -70px; /* Adjusted for slight upward effect without affecting scroll */
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.profileCard:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+}
+
+.avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 4px solid #3b82f6;
+  object-fit: cover;
+}
+
+.name {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #2c3e50;
+  margin-top: 10px;
+}
+
+.email {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.status {
+  display: inline-block;
+  padding: 6px 15px;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.active {
+  background: #27ae60;
+  color: white;
+}
+
+.inactive {
+  background: #c0392b;
+  color: white;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 480px) {
+  .profileCard {
+    width: 90%;
+    padding: 1.5rem;
+    top: -20px;
+  }
+
+  .avatar {
+    width: 100px;
+    height: 100px;
+  }
+
+  .name {
+    font-size: 1.5rem;
+  }
+
+  .email {
+    font-size: 0.9rem;
+  }
+
+  .status {
+    font-size: 0.8rem;
+    padding: 5px 12px;
+  }
+}
+
+.loading,
+.error {
+  font-size: 1.2rem;
+  color: white;
+  text-align: center;
+  margin-top: 20px;
+}

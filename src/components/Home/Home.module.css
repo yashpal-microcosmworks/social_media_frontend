@@ -1,0 +1,143 @@
+/* Home Container */
+.homeContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px;
+  background-color: #d2dcea;
+  min-height: 100vh;
+}
+
+/* Main Content */
+.mainContent {
+  width: 100%;
+  max-width: 600px;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Form Styling */
+.postForm {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Text Area */
+.textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 16px;
+  resize: none;
+  outline: none;
+  transition: border 0.3s ease;
+}
+
+.textarea:focus {
+  border-color: #1877f2;
+}
+
+/* File Upload & Post Button on Same Line */
+.buttonContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.fileInput {
+  display: block; /* Ensure visibility */
+  margin: 10px 0;
+}
+
+.fileInputLabel {
+  background-color: #e4e6eb;
+  color: #050505;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 12px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 50%;
+  text-align: center;
+  justify-content: center;
+}
+
+.fileInputLabel:hover {
+  background-color: #d8dadf;
+}
+
+/* Post Button */
+.postButton {
+  background-color: #1877f2;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s ease;
+  flex: 1;
+  text-align: center;
+}
+
+.postButton:hover {
+  background-color: #166fe5;
+}
+
+.postButton:disabled {
+  background-color: #b0c4de;
+  cursor: not-allowed;
+}
+
+/* Error Message */
+.errorText {
+  color: red;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Posts Container */
+.postsContainer {
+  width: 100%;
+  max-width: 600px;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .mainContent {
+    width: 90%;
+  }
+
+  .textarea {
+    font-size: 14px;
+  }
+
+  .buttonContainer {
+    flex-direction: column; /* Stack buttons on small screens */
+    gap: 10px;
+  }
+
+  .fileInputLabel {
+    width: 100%;
+  }
+
+  .postButton {
+    width: 100%;
+  }
+}

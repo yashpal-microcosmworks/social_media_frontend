@@ -1,0 +1,198 @@
+.postCard {
+  background: #fff;
+  border-radius: 8px;
+  padding: 12px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin-bottom: 15px;
+  max-width: 500px;
+}
+
+.postContent {
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.postImage {
+  width: 100%;
+  max-height: 300px;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-top: 8px;
+}
+
+.reactionSummary {
+  margin-top: 8px;
+  font-size: 14px;
+  color: #606770;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  padding: 8px 0;
+  border-top: 1px solid #ddd;
+}
+
+.likeContainer {
+  position: relative;
+  display: inline-block;
+}
+
+.likeButton {
+  background: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  color: #606770;
+  padding: 6px 12px;
+  transition: background 0.2s;
+}
+
+.likeButton:hover {
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+}
+
+/* Reaction Popup */
+.reactionPopup {
+  position: absolute;
+  bottom: 40px;
+  left: 0;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  padding: 5px 8px;
+  gap: 8px;
+  z-index: 10;
+}
+
+.reactionIcon {
+  font-size: 22px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.reactionIcon:hover {
+  transform: scale(1.2);
+}
+/* Mobile Responsiveness */
+@media (max-width: 480px) {
+  .postCard {
+    padding: 10px;
+    margin: 10px 0;
+  }
+
+  .postContent {
+    font-size: 14px;
+  }
+
+  .reactionSummary {
+    font-size: 12px;
+  }
+
+  .likeButton,
+  .commentButton {
+    font-size: 12px;
+    padding: 8px;
+  }
+}
+
+.commentButton {
+  background-color: #1877f2;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  font-size: 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 5px;
+  width: 20%;
+}
+
+.commentButton:hover {
+  background-color: #155db2;
+}
+
+.commentSection {
+  display: grid;
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px solid #ddd;
+}
+
+.commentInput {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.commentSubmitButton {
+  position: relative;
+  background-color: #1877f2;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  font-size: 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 5px;
+  width: 20%;
+  left: 80%;
+}
+
+.commentSubmitButton:hover {
+  background-color: #155db2;
+}
+
+.commentsList {
+  margin-top: 25px;
+}
+
+.commentItem {
+  background: #eae8e0;
+  padding: 6px 10px;
+  border-radius: 6px;
+  margin-bottom: 5px;
+  font-size: 14px;
+  color: #333;
+}
+
+.commentAuthor {
+  font-weight: bold;
+  background-color: #007bff; /* Facebook blue */
+  color: #fff;
+  border-radius: 12px;
+  padding: 4px 10px;
+  font-size: 14px;
+  display: inline-block;
+  margin-right: 8px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.commentText {
+  font-size: 14px;
+  color: #606770;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 480px) {
+  .commentInput {
+    font-size: 12px;
+    padding: 6px;
+  }
+
+  .commentSubmitButton {
+    font-size: 12px;
+    padding: 5px 10px;
+  }
+
+  .commentItem {
+    font-size: 12px;
+    padding: 5px 8px;
+  }
+}
