@@ -1,5 +1,7 @@
 import { useState } from "react";
 import commentHandler from "./postComments";
+import { jwtDecode } from "jwt-decode";
+import { getAuthToken } from "../utils/auth";
 import styles from "./PostCard.module.css";
 
 const reactionEmojis = {
@@ -9,6 +11,9 @@ const reactionEmojis = {
   sad: "😢",
   angry: "😡",
 };
+
+const token = getAuthToken();
+const currentUser = token ? jwtDecode(token) : null;
 
 const getReactionsSummary = (reactions) => {
   const uniqueReactions = new Set();
@@ -29,16 +34,28 @@ const getReactionsSummary = (reactions) => {
 const PostCard = ({ post, likeHandler, setPosts }) => {
   const [showReactions, setShowReactions] = useState(false);
   const [showCommentBox, setShowCommentBox] = useState(false);
-  const [reaction, setReaction] = useState("like");
   const [comments, setComments] = useState(post.comments);
   const [comment, setComment] = useState("");
   const { emojis } = getReactionsSummary(post.reactions || []);
+
+  const userReaction = post.reactions?.find(
+    (reaction) => reaction.user.id === currentUser?.user.id
+  );
+
+  const getUserReactionType = (userReaction) => {
+    if (!userReaction) return "like";
+
+    return (
+      Object.keys(reactionEmojis).find((key) => userReaction[key] > 0) || "like"
+    );
+  };
+
+  const [reaction, setReaction] = useState(getUserReactionType(userReaction));
 
   const toggleComments = async () => {
     setShowCommentBox(!showCommentBox);
   };
 
-  console.log(post);
   const handleCommentSubmit = async () => {
     if (comment.trim() === "") return;
     const newComment = await commentHandler(post.id, comment);

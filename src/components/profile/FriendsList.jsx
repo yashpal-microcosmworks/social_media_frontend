@@ -5,77 +5,83 @@ import styles from "./FriendsList.module.css";
 const FriendsList = () => {
   const [friends, setFriends] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [showAll, setShowAll] = useState(false);
-
-  const token = getAuthToken();
 
   useEffect(() => {
     const fetchFriends = async () => {
       try {
+        const token = getAuthToken();
         const response = await fetch(
           "http://localhost:5001/friend-request/list",
           {
             method: "GET",
             headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${token}`, // Ensure token is stored in localStorage
+              Authorization: `Bearer ${token}`,
             },
           }
         );
-
-        if (!response.ok) {
-          throw new Error("Failed to fetch friends");
-        }
-
         const data = await response.json();
-        setFriends(data.friends);
-      } catch (err) {
-        setError(err.message);
+        if (data.friends) setFriends(data.friends);
+      } catch (error) {
+        console.error("Error fetching friends:", error);
       } finally {
         setLoading(false);
       }
     };
 
     fetchFriends();
-  }, [token]);
+  }, []);
 
-  if (loading) return <p className={styles.message}>Loading friends...</p>;
-  if (error) return <p className={styles.message}>Error: {error}</p>;
+  const removeFriend = async (friendId) => {
+    try {
+      const token = getAuthToken();
+      const response = await fetch(
+        `http://localhost:5001/friend-request/remove/${friendId}`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      await response.json();
+      if (response.ok) {
+        setFriends(friends.filter((friend) => friend.id !== friendId));
+      }
+    } catch (error) {
+      console.error("Error removing friend:", error);
+    }
+  };
+
+  if (loading) return <div className={styles.loading}>Loading friends...</div>;
   if (friends.length === 0)
-    return <p className={styles.message}>No friends found</p>;
-
-  const visibleFriends = showAll ? friends : friends.slice(0, 6);
+    return <div className={styles.noFriends}>No friends found.</div>;
 
   return (
-    <section className={styles.friendsSection}>
-      <h2 className={styles.friendsHeading}>Friends</h2>
-      <div className={styles.friendsContainer}>
-        {visibleFriends.map((friend) => (
-          <div key={friend.id} className={styles.friendCard}>
-            <img
-              src={friend.avatar || "/default-avatar.png"}
-              alt={`${friend.name}'s Avatar`}
-              className={styles.avatar}
-            />
-            <h3>{friend.name}</h3>
-            <p className={styles.since}>
+    <div className={styles.friendsContainer}>
+      {friends.map((friend) => (
+        <div key={friend.id} className={styles.friendCard}>
+          <img
+            src={friend.avatar || "/default-avatar.png"}
+            alt={friend.name}
+            className={styles.avatar}
+          />
+          <div className={styles.friendInfo}>
+            <h4 className={styles.friendName}>{friend.name}</h4>
+            <p className={styles.friendSince}>
               Friends since:{" "}
               {new Date(friend.friendshipSince).toLocaleDateString()}
             </p>
           </div>
-        ))}
-      </div>
-
-      {!showAll && friends.length > 6 && (
-        <button
-          className={styles.showAllButton}
-          onClick={() => setShowAll(true)}
-        >
-          See All Friends
-        </button>
-      )}
-    </section>
+          <button
+            className={styles.removeButton}
+            onClick={() => removeFriend(friend.id)}
+          >
+            Remove Friend
+          </button>
+        </div>
+      ))}
+    </div>
   );
 };
 

@@ -17,7 +17,6 @@ const commentHandler = async (postId, comment) => {
     }
 
     const newComment = await response.json();
-    console.log("new cmmnt", newComment);
     return newComment;
   } catch (error) {
     console.error("Error posting comment:", error);

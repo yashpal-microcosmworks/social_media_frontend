@@ -9,6 +9,7 @@
   padding: 15px 20px;
   background-color: #4267b2;
   color: white;
+  z-index: 1;
 }
 
 .homeContainer {

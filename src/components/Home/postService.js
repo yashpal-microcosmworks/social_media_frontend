@@ -10,10 +10,10 @@ export const fetchPosts = async () => {
       },
     });
 
-    const data = await response.json(); // Parse the response
+    const data = await response.json();
 
     if (!response.ok) {
-      throw new Error(data.message || "Failed to fetch posts"); // Use backend message if available
+      throw new Error(data.message || "Failed to fetch posts");
     }
 
     return data;

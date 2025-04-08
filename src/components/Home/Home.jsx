@@ -54,7 +54,6 @@ function Home() {
   return (
     <div className={styles.homeContainer}>
       <main className={styles.mainContent}>
-        {/* Post Form */}
         <form onSubmit={handlePostSubmit} className={styles.postForm}>
           <textarea
             className={styles.textarea}
@@ -63,9 +62,28 @@ function Home() {
             onChange={(e) => setContent(e.target.value)}
             required
           />
-          <div className={styles.buttonContainer}>
+          {/* <div className={styles.buttonContainer}>
             <input
               type="file"
+              multiple
+              onChange={(e) => setFiles(e.target.files)}
+              className={styles.fileInputLabel}
+            />
+            <button
+              type="submit"
+              disabled={loading}
+              className={styles.postButton}
+            >
+              {loading ? "Posting..." : "Post Something"}
+            </button>
+          </div> */}
+          <div className={styles.buttonContainer}>
+            <label htmlFor="fileUpload" className={styles.fileInputLabel}>
+              📎 Add Photos
+            </label>
+            <input
+              type="file"
+              id="fileUpload"
               multiple
               onChange={(e) => setFiles(e.target.files)}
               className={styles.fileInput}
@@ -75,7 +93,7 @@ function Home() {
               disabled={loading}
               className={styles.postButton}
             >
-              {loading ? "Posting..." : "Post Something"}
+              {loading ? "Posting..." : "Post"}
             </button>
           </div>
           {error ? <p>{error}</p> : null}
